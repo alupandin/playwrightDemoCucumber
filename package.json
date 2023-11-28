@@ -35,10 +35,8 @@
   "scripts": {
     "postinstall": "serenity-bdd update",
     "clean": "rimraf target",
-    "testOrig": "failsafe clean test:execute test:report",
     "test:executeOrig": "npx cross-env USERPASS_CREDENTIALS_USR=${USERPASS_CREDENTIALS_USR} USERPASS_CREDENTIALS_PSW=${USERPASS_CREDENTIALS_PSW} ENVIRONMENT=${ENVIRONMENT:qa} cucumber-js --tags @SmokeTest",
     "test:execute": "cucumber-js",
-    "test:reportOrig": "serenity-bdd run --features ./features",
     "start": "mkdirp target/site/serenity && npx http-server -p 8080 target/site/serenity -s -o",
     "lint": "eslint --ext ts --config .eslintrc.js .",
     "lint:fix": "npm run lint -- --fix",
