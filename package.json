@@ -1,0 +1,57 @@
+{
+  "author": "Aleks Lupandin",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/alupandin/PlaywrightDemo-cucumber/issues"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.0.1",
+    "@serenity-js/assertions": "^3.13.1",
+    "@serenity-js/console-reporter": "^3.13.1",
+    "@serenity-js/core": "^3.13.1",
+    "@serenity-js/cucumber": "^3.13.1",
+    "@serenity-js/playwright": "^3.13.1",
+    "@serenity-js/rest": "^3.13.1",
+    "@serenity-js/serenity-bdd": "^3.13.1",
+    "@serenity-js/web": "^3.13.1",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "http-server": "^14.1.1",
+    "is-ci": "^3.0.1",
+    "mkdirp": "^3.0.1",
+    "npm-failsafe": "^1.2.0",
+    "playwright": "^1.39.0",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "name": "PlaywrightDemo-cucumber",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "serenity-bdd update",
+    "clean": "rimraf target",
+    "testOrig": "failsafe clean test:execute test:report",
+    "test:executeOrig": "npx cross-env USERPASS_CREDENTIALS_USR=${USERPASS_CREDENTIALS_USR} USERPASS_CREDENTIALS_PSW=${USERPASS_CREDENTIALS_PSW} ENVIRONMENT=${ENVIRONMENT:qa} cucumber-js --tags @SmokeTest",
+    "test:execute": "cucumber-js",
+    "test:reportOrig": "serenity-bdd run --features ./features",
+    "start": "mkdirp target/site/serenity && npx http-server -p 8080 target/site/serenity -s -o",
+    "lint": "eslint --ext ts --config .eslintrc.js .",
+    "lint:fix": "npm run lint -- --fix",
+    "test:run": "npx cross-env cucumber-js --tags @SmokeTest -f '@serenity-js/cucumber'",
+    "test:report": "serenity-bdd run", 
+    "test": "failsafe clean test:run test:report"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alupandin/PlaywrightDemo-cucumber.git"
+  },
+  "dependencies": {
+    "playwright-expect": "^0.1.2"
+  }
+}
